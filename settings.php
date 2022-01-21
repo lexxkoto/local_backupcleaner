@@ -29,11 +29,11 @@ if ($hassiteconfig) {
     $settings = new admin_settingpage(
             'local_backupcleaner', get_string('pluginname', 'local_backupcleaner'));
     $ADMIN->add('localplugins', $settings);
-    
+
     $name = 'local_backupcleaner/min_age';                                                                                                   
     $title = get_string('min_backup_age', 'local_backupcleaner');                                                                                   
     $description = get_string('min_backup_age_desc', 'local_backupcleaner');
-    
+
     $choices = Array(
         '31' => get_string('age_30_days', 'local_backupcleaner'),
         '91' => get_string('age_90_days', 'local_backupcleaner'),
@@ -45,12 +45,12 @@ if ($hassiteconfig) {
         '3650' => get_string('age_3650_days', 'local_backupcleaner'),
     );                                                                     
     $default = '3650';
-    
-    $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);                                                                                                                                                                                     
+
+    $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);
     $settings->add($setting);
-    
-    $name = 'local_backupcleaner/max_delete';                                                                                                   
-    $title = get_string('max_delete', 'local_backupcleaner');                                                                                   
+
+    $name = 'local_backupcleaner/max_delete';
+    $title = get_string('max_delete', 'local_backupcleaner');
     $description = get_string('max_delete_desc', 'local_backupcleaner');
     
     $choices = Array(
@@ -65,10 +65,7 @@ if ($hassiteconfig) {
         '1000' => get_string('max_delete_1000', 'local_backupcleaner'),
     );                                                                     
     $default = '10';
-    
-    $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);                                                                                                                                                                                     
-    $settings->add($setting);
-    
-        
 
+    $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);
+    $settings->add($setting);
 }

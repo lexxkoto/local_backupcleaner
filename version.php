@@ -24,7 +24,7 @@
 
 defined('MOODLE_INTERNAL') || die;
 
-$plugin->version = 2021120703;
+$plugin->version = 2021120704;
 $plugin->requires = 2017051500;
 $plugin->release = '1.0.0';
 $plugin->component = 'local_backupcleaner';

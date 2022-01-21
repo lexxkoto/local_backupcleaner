@@ -33,39 +33,43 @@ class deletebackups extends \core\task\scheduled_task {
     }
 
     public function execute() {
-	    global $DB;
-	    
+        global $DB;
+
         $days = get_config('local_backupcleaner', 'min_age');
         $limit = get_config('local_backupcleaner', 'max_delete');
-        
-        $files = $DB->get_records_sql('SELECT * FROM {files} WHERE mimetype="application/vnd.moodle.backup" AND timecreated < '.(time() - ( $days * 86400)).' LIMIT '.$limit);
-        
+
+        $files = $DB->get_records_sql(
+            'SELECT * FROM {files} WHERE mimetype="application/vnd.moodle.backup" AND timecreated < '
+            .(time() - ( $days * 86400))
+            .' LIMIT '.$limit
+        );
+
         $fs = get_file_storage();
-        
+
         $identified = 0;
         $deleted = 0;
         $bytes = 0;
-        
-        foreach($files as $thisFile) {
-	        
-	        $file = $fs->get_file($thisFile->contextid, $thisFile->component, $thisFile->filearea,  $thisFile->itemid, $thisFile->filepath, $thisFile->filename);
-	        
-	        $identified += 1;
-	        
-	        if ($file) {
-		        $bytes += $thisFile->filesize;
-			    $file->delete();
-			    $deleted += 1;
-			}
+
+        foreach ($files as $thisfile) {
+
+            $file = $fs->get_file($thisfile->contextid, $thisfile->component, $thisfile->filearea,  $thisfile->itemid, $thisfile->filepath, $thisfile->filename);
+
+            $identified += 1;
+
+            if ($file) {
+                $bytes += $thisfile->filesize;
+                $file->delete();
+                $deleted += 1;
+            }
         }
-        
-        if($identified > 0) {
-	        mtrace('Identified '.$identified.' crusty old backups.');
-	        mtrace('Successfully deleted '.$deleted.' of them.');
-	        mtrace('Enjoy the '.number_format($bytes/1048576).' megabytes you\'ve saved!');
-	    } else {
-		    mtrace('Didn\'t find anything to delete.');
-	    }
+
+        if ($identified > 0) {
+            mtrace('Identified '.$identified.' crusty old backups.');
+            mtrace('Successfully deleted '.$deleted.' of them.');
+            mtrace('Enjoy the '.number_format($bytes/1048576).' megabytes you\'ve saved!');
+        } else {
+            mtrace('Didn\'t find anything to delete.');
+        }
     }
 
 }
