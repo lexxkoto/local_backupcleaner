@@ -52,7 +52,10 @@ class deletebackups extends \core\task\scheduled_task {
 
         foreach ($files as $thisfile) {
 
-            $file = $fs->get_file($thisfile->contextid, $thisfile->component, $thisfile->filearea,  $thisfile->itemid, $thisfile->filepath, $thisfile->filename);
+            $file = $fs->get_file(
+                $thisfile->contextid, $thisfile->component, $thisfile->filearea,
+                $thisfile->itemid, $thisfile->filepath, $thisfile->filename
+            );
 
             $identified += 1;
 
@@ -66,7 +69,7 @@ class deletebackups extends \core\task\scheduled_task {
         if ($identified > 0) {
             mtrace('Identified '.$identified.' crusty old backups.');
             mtrace('Successfully deleted '.$deleted.' of them.');
-            mtrace('Enjoy the '.number_format($bytes/1048576).' megabytes you\'ve saved!');
+            mtrace('Enjoy the '.number_format($bytes / 1048576).' megabytes you\'ve saved!');
         } else {
             mtrace('Didn\'t find anything to delete.');
         }

@@ -30,8 +30,8 @@ if ($hassiteconfig) {
             'local_backupcleaner', get_string('pluginname', 'local_backupcleaner'));
     $ADMIN->add('localplugins', $settings);
 
-    $name = 'local_backupcleaner/min_age';                                                                                                   
-    $title = get_string('min_backup_age', 'local_backupcleaner');                                                                                   
+    $name = 'local_backupcleaner/min_age';
+    $title = get_string('min_backup_age', 'local_backupcleaner');
     $description = get_string('min_backup_age_desc', 'local_backupcleaner');
 
     $choices = Array(
@@ -43,7 +43,7 @@ if ($hassiteconfig) {
         '1095' => get_string('age_1095_days', 'local_backupcleaner'),
         '1825' => get_string('age_1825_days', 'local_backupcleaner'),
         '3650' => get_string('age_3650_days', 'local_backupcleaner'),
-    );                                                                     
+    );
     $default = '3650';
 
     $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);
@@ -52,7 +52,7 @@ if ($hassiteconfig) {
     $name = 'local_backupcleaner/max_delete';
     $title = get_string('max_delete', 'local_backupcleaner');
     $description = get_string('max_delete_desc', 'local_backupcleaner');
-    
+
     $choices = Array(
         '1' => get_string('max_delete_1', 'local_backupcleaner'),
         '5' => get_string('max_delete_5', 'local_backupcleaner'),
@@ -63,7 +63,7 @@ if ($hassiteconfig) {
         '250' => get_string('max_delete_250', 'local_backupcleaner'),
         '500' => get_string('max_delete_500', 'local_backupcleaner'),
         '1000' => get_string('max_delete_1000', 'local_backupcleaner'),
-    );                                                                     
+    );
     $default = '10';
 
     $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);
