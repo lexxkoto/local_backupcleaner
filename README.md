@@ -43,5 +43,6 @@ Useful links
 
 Release history
 ===============
+* 1.0.1 - Coding standards improvements. No new features.
 * 1.0.0 - Initial Release
 
