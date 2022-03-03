@@ -40,8 +40,9 @@ class deletebackups extends \core\task\scheduled_task {
 
         $files = $DB->get_records_sql(
             'SELECT * FROM {files} WHERE (component="backup" OR component="user") AND mimetype="application/vnd.moodle.backup" AND timecreated < '
-            .(time() - ( $days * 86400))
-            .' LIMIT '.$limit
+            .(time() - ( $days * 86400)),
+            0,
+            $limit
         );
 
         $fs = get_file_storage();
