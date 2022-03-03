@@ -39,8 +39,8 @@ class deletebackups extends \core\task\scheduled_task {
         $limit = get_config('local_backupcleaner', 'max_delete');
 
         $files = $DB->get_records_sql(
-            'SELECT * FROM {files} WHERE (component="backup" OR component="user") AND mimetype="application/vnd.moodle.backup" AND timecreated < '
-            .(time() - ( $days * 86400)),
+            'SELECT * FROM {files} WHERE (component="backup" OR component="user") AND mimetype="application/vnd.moodle.backup" AND timecreated < :deletetime',
+            ['deletetime' => (time() - ( $days * 86400))],
             0,
             $limit
         );
