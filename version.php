@@ -24,9 +24,9 @@
 
 defined('MOODLE_INTERNAL') || die;
 
-$plugin->version = 2021120706;
+$plugin->version = 2021120707;
 $plugin->requires = 2017051500;
-$plugin->release = '1.0.2';
+$plugin->release = '1.0.3';
 $plugin->maturity = MATURITY_STABLE;
 $plugin->component = 'local_backupcleaner';
 $plugin->description = 'Finds and deletes old course backup files';
